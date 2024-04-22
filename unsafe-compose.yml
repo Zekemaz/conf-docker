@@ -1,0 +1,20 @@
+version: "2.6"
+
+services:
+  database:
+    image: mariadb:11.3.2
+    restart: no
+    privileged: true
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_DATABASE: oui
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password
+    network_mode: host
+    
+  phpymadmin:
+    image: phpmyadmin:5.0.2-apache
+    restart: no
+    environment:
+      PMA_HOST: localhost:3306
+    network_mode: host
