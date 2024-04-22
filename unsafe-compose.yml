@@ -12,9 +12,13 @@ services:
       MARIADB_PASSWORD: password
     network_mode: host
     
-  phpymadmin:
+  phpmyadmin:
     image: phpmyadmin:5.0.2-apache
     restart: no
+    privileged: true
     environment:
       PMA_HOST: localhost:3306
     network_mode: host
+    # apt update
+    # openssh-client
+    
