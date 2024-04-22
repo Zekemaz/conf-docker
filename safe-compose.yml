@@ -1,0 +1,27 @@
+services:
+  database:
+    image: mariadb:11.3.2
+    restart: no
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: true
+      MARIADB_DATABASE: oui
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - mariadb
+
+  phpmyadmin:
+    image: phpmyadmin:5.0.2-apache
+    restart: no
+    environment:
+      PMA_HOST: database:3306
+    ports:
+      - "80:80"
+    networks:
+      - mariadb
+
+networks:
+  mariadb:
+    name: mariadb
